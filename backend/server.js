@@ -14,6 +14,7 @@ app.use(
       "https://simple-login-app-three.vercel.app/", // optionally add your Vercel URL
     ],
     methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
   })
 );
