@@ -10,14 +10,16 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "http://localhost:5173",  // local dev
-      "https://simple-login-app-three.vercel.app/", // optionally add your Vercel URL
+      "http://localhost:5173",
+      "https://simple-login-app-three.vercel.app",
+      "https://simpleloginapp-production-6b2d.up.railway.app"
     ],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
   })
 );
+
 
 app.use(express.json());
 
