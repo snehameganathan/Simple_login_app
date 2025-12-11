@@ -1,0 +1,143 @@
+/* Background and layout */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: black;
+}
+
+.app-container {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("/bg.jpg");
+  background-size: cover;       /* ensures full coverage */
+  background-position: center;  /* centers image */
+  background-repeat: no-repeat; /* prevents tiling */
+  position: relative;
+  font-family: Arial, sans-serif;
+}
+
+.netflix-logo {
+  position: absolute;
+  top: 45px;
+  left: 70px;
+  width: 240px; 
+  z-index: 20;
+  filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.8));
+  cursor: pointer;
+}
+
+
+/* Dark overlay */
+.overlay {
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Form box */
+.form-box {
+  background: rgba(0, 0, 0, 0.75);
+  padding: 40px;
+  width: 350px;
+  border-radius: 6px;
+  color: white;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+/* Form title */
+.form-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Input fields */
+.input-box {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  background: #333;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+.input-box:focus {
+  outline: 2px solid #e50914;
+}
+
+/* Red button */
+.btn-red {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: #e50914;
+  border: none;
+  color: white;
+  font-size: 17px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-red:hover {
+  background: #f6121d;
+}
+
+/* Footer link */
+.form-footer {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.link-red {
+  color: #e50914;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Dashboard page */
+.dashboard-container {
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-title {
+  font-size: 32px;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.btn-red-small {
+  padding: 12px 30px;
+  background: #e50914;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-red-small:hover {
+  background: #f6121d;
+}

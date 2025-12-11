@@ -1,0 +1,73 @@
+import { useState } from "react";
+import axios from "axios";
+
+export default function SignUp({ goToSignIn }) {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("http://localhost:5000/signup", formData);
+      if (res.data.success) {
+        alert("Signup successful!");
+        goToSignIn();
+      } else {
+        alert(res.data.message);
+      }
+    } catch {
+      alert("Server error!");
+    }
+  };
+
+  return (
+    <div className="overlay">
+      <form className="form-box" onSubmit={handleSubmit}>
+        <h1 className="form-title">Sign Up</h1>
+
+        <input
+          placeholder="Full Name"
+          required
+          onChange={(e) =>
+            setFormData({ ...formData, name: e.target.value })
+          }
+          className="input-box"
+        />
+
+        <input
+          type="email"
+          placeholder="Email"
+          required
+          onChange={(e) =>
+            setFormData({ ...formData, email: e.target.value })
+          }
+          className="input-box"
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          required
+          onChange={(e) =>
+            setFormData({ ...formData, password: e.target.value })
+          }
+          className="input-box"
+        />
+
+        <button type="submit" className="btn-red">
+          Sign Up
+        </button>
+
+        <p className="form-footer">
+          Already have an account?{" "}
+          <span className="link-red" onClick={goToSignIn}>
+            Sign In
+          </span>
+        </p>
+      </form>
+    </div>
+  );
+}
