@@ -3,20 +3,25 @@ import axios from "axios";
 
 export default function SignIn({ goToSignUp, goToDashboard }) {
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(""); // reset error
+
     try {
       const res = await axios.post("http://localhost:5000/signin", formData);
+
       if (res.data.success) {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("name", res.data.user.name);
         goToDashboard();
       } else {
-        alert(res.data.message);
+        setError(res.data.message);
       }
-    } catch {
-      alert("Server error!");
+    } catch (err) {
+      setError("Server error! Please try again later.");
+      console.error(err);
     }
   };
 
@@ -42,6 +47,8 @@ export default function SignIn({ goToSignUp, goToDashboard }) {
           }
           className="input-box"
         />
+
+        {error && <p className="error-msg">{error}</p>}
 
         <button type="submit" className="btn-red">
           Sign In

@@ -2,24 +2,25 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function SignUp({ goToSignIn }) {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+
     try {
       const res = await axios.post("http://localhost:5000/signup", formData);
+
       if (res.data.success) {
         alert("Signup successful!");
         goToSignIn();
       } else {
-        alert(res.data.message);
+        setError(res.data.message);
       }
-    } catch {
-      alert("Server error!");
+    } catch (err) {
+      setError("Server error! Please try again later.");
+      console.error(err);
     }
   };
 
@@ -31,9 +32,7 @@ export default function SignUp({ goToSignIn }) {
         <input
           placeholder="Full Name"
           required
-          onChange={(e) =>
-            setFormData({ ...formData, name: e.target.value })
-          }
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           className="input-box"
         />
 
@@ -41,9 +40,7 @@ export default function SignUp({ goToSignIn }) {
           type="email"
           placeholder="Email"
           required
-          onChange={(e) =>
-            setFormData({ ...formData, email: e.target.value })
-          }
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           className="input-box"
         />
 
@@ -51,11 +48,11 @@ export default function SignUp({ goToSignIn }) {
           type="password"
           placeholder="Password"
           required
-          onChange={(e) =>
-            setFormData({ ...formData, password: e.target.value })
-          }
+          onChange={(e) => setFormData({ ...formData, password: e.target.value })}
           className="input-box"
         />
+
+        {error && <p className="error-msg">{error}</p>}
 
         <button type="submit" className="btn-red">
           Sign Up
