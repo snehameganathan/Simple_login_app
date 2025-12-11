@@ -11,6 +11,11 @@ app.use(express.json());
 const SECRET_KEY = "mysecretkey";
 let users = JSON.parse(fs.readFileSync("users.json", "utf-8"));
 
+// 👉 ADD THIS ROUTE (Fix for Railway "Cannot GET /")
+app.get("/", (req, res) => {
+  res.send("Backend is running successfully 🎉");
+});
+
 // ---------------- SIGNUP ----------------
 app.post("/signup", async (req, res) => {
   const { name, email, password } = req.body;
@@ -36,7 +41,12 @@ app.post("/signin", async (req, res) => {
   const match = await bcrypt.compare(password, user.password);
   if (!match) return res.json({ success: false, message: "Invalid password" });
 
-  const token = jwt.sign({ id: user.id, name: user.name }, SECRET_KEY, { expiresIn: "1h" });
+  const token = jwt.sign(
+    { id: user.id, name: user.name },
+    SECRET_KEY,
+    { expiresIn: "1h" }
+  );
+
   res.json({ success: true, token, user: { name: user.name, email: user.email } });
 });
 
