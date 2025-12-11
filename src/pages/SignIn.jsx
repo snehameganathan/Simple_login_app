@@ -7,10 +7,13 @@ export default function SignIn({ goToSignUp, goToDashboard }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // reset error
+    setError("");
 
     try {
-      const res = await axios.post("http://localhost:5000/signin", formData);
+      const res = await axios.post(
+        "https://simpleloginapp-production-6b2d.up.railway.app/signin",
+        formData
+      );
 
       if (res.data.success) {
         localStorage.setItem("token", res.data.token);

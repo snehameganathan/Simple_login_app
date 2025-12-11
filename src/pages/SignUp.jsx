@@ -2,7 +2,11 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function SignUp({ goToSignIn }) {
-  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: ""
+  });
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
@@ -10,7 +14,10 @@ export default function SignUp({ goToSignIn }) {
     setError("");
 
     try {
-      const res = await axios.post("http://localhost:5000/signup", formData);
+      const res = await axios.post(
+        "https://simpleloginapp-production-6b2d.up.railway.app/signup",
+        formData
+      );
 
       if (res.data.success) {
         alert("Signup successful!");
@@ -48,7 +55,9 @@ export default function SignUp({ goToSignIn }) {
           type="password"
           placeholder="Password"
           required
-          onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, password: e.target.value })
+          }
           className="input-box"
         />
 
