@@ -11,7 +11,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",  // local dev
-      "https://simple-login-app-fftc.vercel.app/", // optionally add your Vercel URL
+      "https://simple-login-app-three.vercel.app/", // optionally add your Vercel URL
     ],
     methods: ["GET", "POST"],
     credentials: true
